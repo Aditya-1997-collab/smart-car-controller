@@ -1,0 +1,105 @@
+/* src/components/ControlPad/ControlPad.css */
+
+.control-pad-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.dpad-circular-matrix {
+  display: grid;
+  grid-template-areas: 
+    ".        forward  ."
+    "left     brake    right"
+    ".        backward .";
+  grid-template-columns: repeat(3, 80px); /* Expanded slightly to fit button text */
+  grid-template-rows: repeat(3, 80px);
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 25px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dpad-btn {
+  background: #1e293b;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.btn-forward { grid-area: forward; border-bottom: 3px solid var(--accent-cyan); }
+.btn-left { grid-area: left; border-right: 3px solid var(--accent-cyan); }
+.btn-right { grid-area: right; border-left: 3px solid var(--accent-cyan); }
+.btn-backward { grid-area: backward; border-top: 3px solid var(--accent-cyan); }
+
+/* DYNAMIC CENTER BUTTON STYLES */
+.btn-center-toggle {
+  grid-area: brake;
+  font-size: 0.75rem; /* Adjusted text scaling to fit inside the circle */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/* STATE A: ENGINE OFF (Show Cyan Start Option) */
+.engine-stopped {
+  background: #0f2430;
+  border: 2px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+}
+.engine-stopped:hover {
+  background: #153549;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+/* STATE B: ENGINE RUNNING (Show Pulsing Red Stop Action) */
+.engine-running {
+  background: #2b121a;
+  border: 2px solid var(--danger-red);
+  color: var(--danger-red);
+  box-shadow: 0 0 12px rgba(255, 42, 95, 0.3);
+  animation: dynamic-glow 1.5s infinite alternate;
+}
+.engine-running:hover {
+  background: #421623;
+  box-shadow: 0 0 20px rgba(255, 42, 95, 0.6);
+}
+
+/* Interactions for regular direction hold states */
+.dpad-btn:active, .dpad-btn.active {
+  background: var(--accent-cyan) !important;
+  color: #0b0f19 !important;
+  box-shadow: 0 0 25px var(--accent-cyan);
+  transform: scale(0.92);
+}
+
+.current-state-badge {
+  margin-top: 25px;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  font-weight: bold;
+}
+.current-state-badge span {
+  color: var(--accent-orange);
+}
+
+@keyframes dynamic-glow {
+  from { box-shadow: 0 0 8px rgba(255, 42, 95, 0.2); }
+  to { box-shadow: 0 0 18px rgba(255, 42, 95, 0.7); }
+}
