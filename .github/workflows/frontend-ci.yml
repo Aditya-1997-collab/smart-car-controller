@@ -1,0 +1,39 @@
+# .github/workflows/frontend-ci.yml
+name: Smart Car Frontend CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Pull down the repository code into the virtual machine container
+    - name: Checkout Code Repository
+      uses: actions/checkout@v4
+
+    # 2. Initialize modern Node.js environment
+    - name: Setup Node.js Environment
+      uses: actions/checkout@v4
+      with:
+        node-version: 20
+        cache: 'npm' # Speeds up subsequent runs by caching package layers
+
+    # 3. Clean install all package locks without altering dependency chains
+    - name: Install Project Dependencies
+      run: npm ci
+
+    # 4. Execute your strict ESLint checking pass
+    - name: Run Code Linter Check
+      run: npm run lint
+
+    # 5. Verify the production React Compiler output generates safely
+    - name: Execute TypeScript Compiler Build
+      run: npm run build
+      env: 
+        VITE_API_URL: ${{ vars.VITE_API_URL }}
+        VITE_WS_URL: ${{ vars.VITE_WS_URL }}
