@@ -25,6 +25,7 @@ export const FeatureFlagProvider: React.FC<{ children: React.ReactNode }> = ({ c
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFeatureFlags = () => {
   const context = useContext(FeatureFlagContext);
   if (!context) throw new Error('useFeatureFlags must be wrapped within a FeatureFlagProvider');

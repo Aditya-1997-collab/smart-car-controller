@@ -35,7 +35,7 @@ const TelemetryHub: React.FC<TelemetryHubProps> = ({ telemetryData }) => {
       
       const data = await response.json();
       setAiResponse(data.reply);
-    } catch (error) {
+    } catch (_error) {
       setAiResponse('AI Pipeline Error: Failed to bridge communication line to the FastAPI Qwen router.');
     }
     setAiPrompt('');
