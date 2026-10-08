@@ -1,0 +1,135 @@
+/* src/components/DiwaliLighting/index.css */
+
+.diwali-lighting-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.panel-locked {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.lighting-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row-label-caption {
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: #64748b;
+}
+
+/* Master Power Switch Component Styling */
+.power-toggle-switch {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.switch-dark {
+  background: #1e293b;
+  color: #94a3b8;
+}
+.switch-dark:hover {
+  background: #24334a;
+  color: var(--text-primary);
+}
+
+.switch-ignited {
+  background: #0d2d24;
+  border-color: #10b981;
+  color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+  text-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+}
+
+/* Color Presets Hex Matrix Grid Setup */
+.preset-colors-matrix {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.color-swatch-node {
+  background-color: var(--swatch-color);
+  aspect-ratio: 1;
+  border: 2px solid #151d30;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.color-swatch-node:hover:not(:disabled) {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px var(--swatch-color);
+}
+
+.swatch-selected {
+  border: 2px solid var(--text-primary);
+  transform: scale(1.1);
+  box-shadow: 0 0 15px var(--swatch-color);
+}
+
+.color-swatch-node:disabled {
+  cursor: not-allowed;
+  opacity: 0.25;
+}
+
+/* Brightness Intensity Neon Range Input Slider */
+.slider-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.percentage-badge {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: var(--accent-orange);
+}
+
+.neon-range-input-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 4px;
+  background: #1e293b;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.neon-range-input-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--accent-orange);
+  transition: transform 0.1s;
+}
+
+.neon-range-input-bar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.neon-range-input-bar:disabled::-webkit-slider-thumb {
+  background: #64748b;
+  box-shadow: none;
+  cursor: not-allowed;
+}
