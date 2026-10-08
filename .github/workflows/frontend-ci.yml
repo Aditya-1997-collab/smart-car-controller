@@ -34,3 +34,6 @@ jobs:
     # 5. Verify the production React Compiler output generates safely
     - name: Execute TypeScript Compiler Build
       run: npm run build
+      env: 
+        VITE_API_URL: ${{ vars.VITE_API_URL }}
+        VITE_WS_URL: ${{ vars.VITE_WS_URL }}
