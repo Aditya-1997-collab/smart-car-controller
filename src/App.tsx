@@ -1,23 +1,41 @@
-// src/App.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { useRobotSocket } from './hooks/useRobotSocket';
-import { useFeatureFlags } from './context/FeatureFlagContext'; // Add this import
+import { useFeatureFlags } from './context/FeatureFlagContext'; 
 import ControlPad from './components/ControllPad/index';
 import DiwaliLighting from './components/DiwaliLighting';
 import TelemetryHub from './components/TelemetryHub';
 import StatusIndicator from './components/StatusIndicator';
+import PinConfigurationMatrix from './components/Configure';
 import './styles/index.css';
 
 const App: React.FC = () => {
   const { isConnected, telemetry, sendCommand } = useRobotSocket(`${import.meta.env.VITE_WS_URL}/ws/drive`);
-  const flags = useFeatureFlags(); // Pull active flags from the central state
+  const flags = useFeatureFlags(); 
+
+  // Modal display driver state
+  const [isConfigModalOpen, setIsConfigModalOpen] = useState<boolean>(false);
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
         <h1>VROBOTIC ESP32 SYSTEM CONSOLE</h1>
-        <StatusIndicator connected={isConnected} />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* Symmetrical Arcade Configuration Switcher Trigger */}
+          <button 
+            className="configure-toggle-trigger"
+            onClick={() => setIsConfigModalOpen(true)}
+          >
+            ⚙️ Configure GPIO Pins
+          </button>
+          <StatusIndicator connected={isConnected} />
+        </div>
       </header>
+
+      {/* Embedded Modal Gateway Layer */}
+      <PinConfigurationMatrix 
+        isOpen={isConfigModalOpen} 
+        onClose={() => setIsConfigModalOpen(false)} 
+      />
 
       <main className="dashboard-grid">
         {/* Dynamic Card 1: Powertrain Remote Controller Grid Node */}
@@ -42,10 +60,12 @@ const App: React.FC = () => {
         )}
 
         {/* Dynamic Card 3: Telemetry Matrices Hub Panel */}
-       {flags.enableCloudAI && (<section className="grid-card right-flank">
-          <h2>📊 Telemetry & Cloud AI</h2>
-          <TelemetryHub telemetryData={telemetry} />
-        </section>)}
+        {flags.enableCloudAI && (
+          <section className="grid-card right-flank">
+            <h2>📊 Telemetry & Cloud AI</h2>
+            <TelemetryHub telemetryData={telemetry} />
+          </section>
+        )}
       </main>
     </div>
   );

@@ -1,0 +1,114 @@
+/* Container Workspace */
+.matrix-workspace {
+  background: var(--panel-bg, #242432);
+  border: 2px solid #3b3b4f;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px auto;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.matrix-workspace h3 {
+  margin-top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #a0a0c0;
+  font-size: 1.15rem;
+}
+
+/* Table Architecture styling */
+.pin-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.pin-matrix-table th {
+  padding: 10px;
+  border-bottom: 2px solid #3b3b4f;
+  color: var(--accent-cyan, #00f3ff);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.pin-matrix-table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #2e2e42;
+}
+
+/* Form Matrix Inputs */
+.matrix-input {
+  background: #1a1a24;
+  border: 1px solid #3b3b4f;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 90%;
+  outline: none;
+  font-family: monospace;
+}
+
+.matrix-input:focus {
+  border-color: var(--accent-cyan, #00f3ff);
+  box-shadow: 0 0 5px rgba(0, 243, 255, 0.3);
+}
+
+.matrix-input:disabled {
+  background: transparent;
+  border-color: transparent;
+  color: #d1d1e0;
+  cursor: not-allowed;
+}
+
+/* Action Controls Buttons */
+.matrix-action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.add-row-btn {
+  background: transparent;
+  color: var(--accent-cyan, #00f3ff);
+  border: 1px dashed var(--accent-cyan, #00f3ff);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-row-btn:hover {
+  background: rgba(0, 243, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.save-matrix-btn {
+  background: var(--accent-cyan, #00f3ff);
+  color: #1a1a24;
+  border: none;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 243, 255, 0.2);
+  transition: all 0.15s ease-in-out;
+}
+
+.save-matrix-btn:hover {
+  background: #00d6e2;
+  box-shadow: 0 4px 16px rgba(0, 243, 255, 0.4);
+}
+
+.save-matrix-btn:active {
+  transform: scale(0.97);
+}
